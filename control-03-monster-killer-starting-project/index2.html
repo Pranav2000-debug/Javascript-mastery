@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="assets/scripts/vendor.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+</head>
+<style>
+    body {
+        background-color: #2c2c2c;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        margin: 1rem 0.5rem;
+    }
+
+    .controller,
+    .health {
+        margin: 2rem auto;
+        width: 30rem;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+    }
+
+    .controller {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .controller button {
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        border: none;
+        background-color: #ff0062;
+        color: white;
+        cursor: pointer;
+        margin: 0.5rem;
+    }
+
+    #bonus-life {
+        font-weight: bold;
+        background-color: #ff0062;
+        border: 1px solid #ff0062;
+        padding: 0.15rem 0.5rem;
+        text-align: center;
+        border-radius: 10px;
+        color: white;
+        margin: 0 0.5rem;
+    }
+
+    button:hover,
+    button:active {
+        background-color: #a927f5;
+    }
+
+    progress {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 80%;
+        height: 2rem;
+        color: #ff0062;
+        border: 1px solid #a927f5;
+    }
+
+    progress[value]::-webkit-progress-bar,
+    progress[value] {
+        background-color: #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    }
+
+    progress[value]::-webkit-progress-value {
+        background-color: #a927f5;
+        transition: all 0.2s ease-out;
+    }
+
+    progress[value]::-moz-progress-bar {
+        background-color: #a927f5;
+        transition: all 0.2s ease-out;
+    }
+</style>
+
+<body>
+    <section class="health" id="health-levels">
+        <h2>MONSTER HEALTH</h2>
+        <progress id="monster-health" max="100" value="100">100%</progress>
+        <h2>PLAYER HEATLH <span id="bonus-life">1</span></h2>
+        <progress id="player-health" max="100" value="100">100%</progress>
+    </section>
+    <section class="controller" id="controls">
+        <button id="attack-btn">ATTACK</button>
+        <button id="strong-attack-btn">STRONG ATTACK</button>
+        <button id="heal-btn">HEAL</button>
+        <button id="log-btn">SHOW LOG</button>
+    </section>
+</body>
+
+</html>
