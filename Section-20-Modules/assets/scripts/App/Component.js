@@ -17,6 +17,7 @@ export class Component {
 
   attach() {
     this.hostElement.insertAdjacentElement(
+      // eslint-disable-next-line multiline-ternary, no-ternary
       this.insertBefore ? 'afterbegin' : 'beforeend',
       this.element
     );
