@@ -1,14 +1,15 @@
-import { ProjectItem } from "./ProjectItem.js";
+import { ProjectItem } from "./ProjectItem";
 // import { DOMHelper } from "../Utility/DOMHelper.js";
-import * as DOMH from '../Utility/DOMHelper.js';  // BUNDLE ALL FUNCITONALITIES AND USE AS AN OBJECT
+import * as DOMH from '../Utility/DOMHelper';  // BUNDLE ALL FUNCITONALITIES AND USE AS AN OBJECT
 
 
 
 export class ProjectList {
-  projects = [];
+  // projects = [];
 
   constructor(type) {
     this.type = type;
+    this.projects = [];
     const prjItems = document.querySelectorAll(`#${type}-projects li`);
     for (const prjItem of prjItems) {
       this.projects.push(
