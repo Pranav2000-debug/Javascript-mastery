@@ -5,10 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="tooltip.js"></script>
+    <script src="confirm-link.js"></script>
+    <style>
+        body {
+            background-color: #000000f2;
+        }
+         p{
+            color: white;
+        }
+        div{
+            color:red
+        }
+        span {
+            color: maroon;
+        }
+    </style>
 </head>
 <body>
+    <template id="tooltip-template">
+       <slot></slot> <span> (?)</span>
+    </template>
     <p><tp-tooltip text="Web Components is a set of standards">Web Components</tp-tooltip> Are Awesome</p>
-    <tp-tooltip>Here we go</tp-tooltip>
-
+    <tp-tooltip style="display: block;">Here we go</tp-tooltip>
+    <a is="confirm-tag" href="https://www.google.com">google.com</a>
 </body>
 </html>
