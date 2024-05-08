@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="modalComp.js" defer></script> -->
+    <script src="openModal.js" type="module" ></script>
+    <style> 
+    * {
+        box-sizing: border-box;
+        margin: 0;
+    }
+    </style>
+</head>
+<body>
+    <uc-modal modal-title = "please confirm">
+        <h1 slot="title">Please Confirm</h1>
+        <p>
+            with your confirmation, you agree to pay the full amount
+        </p>
+    </uc-modal>
+    <p>Please confirm your choice</p>
+    <button>Show Details</button>
+</body>
+</html>
