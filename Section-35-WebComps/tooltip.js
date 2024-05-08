@@ -3,20 +3,37 @@ class ToolTip extends HTMLElement {
     super();
     this._tooltipContainer;
     this._tooltipText = 'dummy text';
+		this._tooltipIcon;
     this.attachShadow({ mode: 'open' });
     // const template  = document.querySelector('#tooltip-template');
     // this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.shadowRoot.innerHTML = `
     <style>
       div {
+        font-weight: bold;
         background-color: whitesmoke;
         color: black;
         position: absolute;
+        top: 1.7rem;
+        left: 0.75rem;
         z-index: 10;
+        padding: 1rem 0.8rem;
+        border-radius: 72% 28% 83% 17% / 23% 69% 31% 77% ;
+        box-shadow: 1px 1px 6px rgba(0,0,0,0.26)
+      }
+      :host {
+        color: white;
+        position: relative;
+      }
+      span {
+        background-color: white;
+        color: black;
+        border-radius: 60%;
+        padding: 3px 8px;
       }
     </style>
     <slot></slot> 
-    <span> (?)</span>
+    <span>?</span>
     `;
   }
   // called by dfalt only after the customElement is added/inserted to the DOM.
@@ -25,13 +42,26 @@ class ToolTip extends HTMLElement {
       this._tooltipText = this.getAttribute("text");
     }
     // const tooltipIcon = document.createElement("span");
-    const tooltipIcon = this.shadowRoot.querySelector('span');
+    this._tooltipIcon = this.shadowRoot.querySelector('span');
     // tooltipIcon.textContent = " (?)";
-    tooltipIcon.addEventListener("mouseenter", this._showToolTip.bind(this));
-    tooltipIcon.addEventListener("mouseleave", this._hideToolTip.bind(this));
+		this._tooltipIcon.addEventListener("mouseenter", this._showToolTip.bind(this));
+    this._tooltipIcon.addEventListener("mouseleave", this._hideToolTip.bind(this));
     // this.shadowRoot.appendChild(tooltipIcon);
-    this.style.color = 'whitesmoke'
-    this.style.position = 'relative';
+    // this.style.color = 'whitesmoke'
+    // this.style.position = 'relative';
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if(oldValue === newValue) {
+			return;
+    }
+		if(name === 'text') {
+			this._tooltipText = newValue;
+		}
+  }
+
+  static get observedAttributes() {
+    return ['text']; // listen to attribute changes
   }
 
   // private method to this class using underscore (psuedoPrivate method)
@@ -47,6 +77,12 @@ class ToolTip extends HTMLElement {
   _hideToolTip() {
     this.shadowRoot.removeChild(this._tooltipContainer);
   }
+
+	disconnectedCallback() { // Clean up event listeners
+		this._tooltipContainer.removeEventListener('mouseenter', this._showToolTip); 
+		this._tooltipContainer.removeEventListener('mouseleave', this._hideToolTip);
+		console.log('Disconnected');
+	}
 }
 
 // takes two args - 'HTML Tag (has to be a single word, separated by a dash. Prefix has to be a unique tag [norm]', 'The JS class';
