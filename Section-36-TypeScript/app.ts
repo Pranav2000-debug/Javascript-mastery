@@ -1,7 +1,8 @@
 // here the ID for the DOM element could be anything and TS doesn't know what we are getting here, rather it is of type HTMLElement. Hence we do something called typecasting. (overwritting TS inference)
 const num1Input = document.getElementById('num1') as HTMLInputElement; // use the keyword as (for DOM inference)
 const num2Input = <HTMLInputElement>document.getElementById('num1'); // <> syntax instead of 'as' can be used too
-const btn = document.querySelector('button');
+// ! means that this will never be null and ignore the null case (TS specific syntax)
+const btn = document.querySelector('button')!;
 
 // TYPES:- numbers, strings, booleans
 
